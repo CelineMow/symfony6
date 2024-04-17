@@ -23,7 +23,19 @@ class AppFixtures extends Fixture
         $encoded = $this->encoder->hashPassword($user, '123');
         $user->setPassword($encoded);
         $user->setRoles(['ROLE_USER']);
+
+        $admin = new User();
+        $encodedAdmin = $this->encoder->hashPassword($admin, '123');
+        $admin->setNom('Morel')->setPrenom('Celine')->setEmail('admin@gmail.com')->setPassword($encodedAdmin)->setRoles(['ROLE_ADMIN']);
+
+        $employee = new User();
+
+        $encodedEmployee = $this->encoder->hashPassword($employee, '123');
+        $employee->setNom('Morel')->setPrenom('Celine')->setEmail('employee@gmail.com')->setPassword($encodedEmployee)->setRoles(['ROLE_EMPLOYEE']);
+
         $manager->persist($user);
+        $manager->persist($admin);
+        $manager->persist($employee);
 
         $manager->flush();
     }
