@@ -7,6 +7,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class CategoryType extends AbstractType
 {
@@ -15,7 +17,30 @@ class CategoryType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('image')
+            ->add(
+                'image',
+                FileType::class,
+                [
+                    'required' => false,
+                    'mapped' => false,
+                    'label' => "Image Catégorie",
+                    'attr' => [
+                        'placeholder' => 'Choisir une image'
+                    ],
+                    'constraints' => [
+                        new File([
+                            'maxSize' => '1024k',
+                            'mimeTypes' => [
+                                'image/jpeg',
+                                'image/png'
+                            ],
+                            'mimeTypesMessage' => 'Veuillez uploader une image en png ou jpg',
+                            'uploadFormSizeErrorMessage' => 'La taille max autorisée est de 1024 kO',
+                        ])
+                    ],
+                ]
+            )
+
             ->add('date_add', DateTimeType::class, [
                 'data' => new \DateTime(),
                 'widget' => 'single_text',
