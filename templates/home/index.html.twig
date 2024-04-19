@@ -12,15 +12,15 @@
     <h1>Bonjour {{ controller_name }}! ✅</h1>
     {# **{{message}}** #}
 
+    {% if is_granted ('ROLE_USER') %}
+    <h2> Vous êtes client {{app.user.prenom}}</h2>
+    {% endif %}
+
     {% if is_granted ('ROLE_EMPLOYEE') %}
     <h2> Vous êtes employé {{app.user.prenom}}</h2>
     {% endif %}
 
-        {% if is_granted ('ROLE_USER') %}
-    <h2> Vous êtes client {{app.user.prenom}}</h2>
-    {% endif %}
-
-        {% if is_granted ('ROLE_ADMIN') %}
+    {% if is_granted ('ROLE_ADMIN') %}
     <h2> Vous êtes admin {{app.user.prenom}}</h2>
     {% endif %}
 </div>
