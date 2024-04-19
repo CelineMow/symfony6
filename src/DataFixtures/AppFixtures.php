@@ -27,7 +27,7 @@ class AppFixtures extends Fixture
         $admin = new User();
         $admin->setNom('Morel')->setPrenom('Celine');
         $admin->setEmail('admin@gmail.com');
-        $encodedAdmin = $this->encoder->hashPassword($admin, '345');
+        $encodedAdmin = $this->encoder->hashPassword($admin, '123');
         $admin->setPassword($encodedAdmin);
         $admin->setRoles(['ROLE_ADMIN']);
 
