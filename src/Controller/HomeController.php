@@ -22,6 +22,17 @@ class HomeController extends AbstractController
     {
         return $this->render('home/contact.html.twig', [
             'controller_name' => 'Controller de page Contact',
+            'coordonnees1' => [
+                "Nom" => "Morel",
+                "Prénom" => "Céline",
+                "Adresse" => "1 rue Jean Goujon 31500 Toulouse",
+            ],
+
+            'coordonnees2' => [
+                "Nom" => "Huynh",
+                "Prénom" => "Yvon",
+                "Adresse" => "14 rue du Tibet, 31100 Toulouse",
+            ]
         ]);
     }
 }
